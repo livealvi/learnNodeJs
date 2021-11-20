@@ -1,26 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
+const userRouter = require("./router");
 
 const app = express();
 app.use(morgan("dev"));
 
-//user router
-const router = express.Router();
-
-router.get("/login", (req, res) => {
-  res.send("I am login route");
-});
-
-router.get("/logout", (req, res) => {
-  res.send("I am logout route");
-});
-
-router.get("/singup", (req, res) => {
-  res.send("I am singup route");
-});
-//user router
-
-app.use("/user", router);
+app.use("/user", userRouter);
 
 // root-route
 app.get("/", (req, res) => {
