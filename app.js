@@ -8,8 +8,9 @@ app.use(morgan("dev"));
 
 app.use("/user", userRouter);
 app.use("/post", postRouter);
-app.get("/products/:prodId", (req, res) => {
-  res.send("I am Listening");
+app.get("/products/:prodId/reviews/:reviewId", (req, res) => {
+  console.log(req.params);
+  res.send("I am Listening " + req.params.prodId);
 });
 
 // root-route
