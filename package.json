@@ -1,0 +1,27 @@
+{
+  "name": "template-engine-ejs",
+  "version": "1.0.0",
+  "description": "Template Engine : EJS, ExpressJs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livealvi/learnNodeJs.git"
+  },
+  "author": "Alvi Hasan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livealvi/learnNodeJs/issues"
+  },
+  "homepage": "https://github.com/livealvi/learnNodeJs#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
