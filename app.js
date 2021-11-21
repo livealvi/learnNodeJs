@@ -8,28 +8,28 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-let Schema = mongoose.Schema;
-let testSchema = new Schema({
-  name: String,
-});
+// let Schema = mongoose.Schema;
+// let testSchema = new Schema({
+//   name: String,
+// });
 
-let Test = mongoose.model("Test", testSchema);
+// let Test = mongoose.model("Test", testSchema);
 
 app.get("/", (req, res) => {
-  let test = new Test({
-    name: "Alvi Hasan",
-  });
-  test
-    .save()
-    .then((t) => {
-      res.json(t);
-    })
-    .catch((e) => {
-      console.log(e);
-      res.status(500).json({
-        error: "Error Occured",
-      });
-    });
+  //   let test = new Test({
+  //     name: "Alvi Hasan",
+  //   });
+  //   test
+  //     .save()
+  //     .then((t) => {
+  //       res.json(t);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //       res.status(500).json({
+  //         error: "Error Occured",
+  //       });
+  //     });
 });
 
 const PORT = process.env.PORT || 8080;
