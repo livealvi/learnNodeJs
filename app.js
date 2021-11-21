@@ -9,6 +9,14 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/about", (req, res) => {
+  res.render("pages/about");
+});
+
+app.get("/help", (req, res) => {
+  res.render("pages/help");
+});
+
 app.get("/", (req, res) => {
   let post = {
     title: "Test Title",
@@ -35,7 +43,7 @@ app.get("/", (req, res) => {
     },
   ];
 
-  res.render("index", { title: "EJs is Easy", post, posts });
+  res.render("pages/index", { title: "EJs is Easy", post, posts });
 });
 
 app.get("*", function (req, res) {
