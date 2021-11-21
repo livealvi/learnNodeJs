@@ -1,38 +1,28 @@
-<!DOCTYPE html>
-<html>
+<%- include('../Partials/header.ejs') %>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Learning EJs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<%- include('../Partials/nav.ejs') %>
+<h1><%= title %></h1>
+<p>This is a dummy text.This is a dummy text.This is a dummy text.
+    This is a dummy text.This is a dummy text.This is a dummy text.
+    This is a dummy text.This is a dummy text.This is a dummy text.
+</p>
+<%= new Date().toISOString() %>
 
-<body>
-    <%- include('../Partials/nav.ejs') %>
-    <h1><%= title %></h1>
-    <p>This is a dummy text.This is a dummy text.This is a dummy text.
-        This is a dummy text.This is a dummy text.This is a dummy text.
-        This is a dummy text.This is a dummy text.This is a dummy text.
-    </p>
-    <%= new Date().toISOString() %>
+<% if(post.published) { %>
+<h3>Title: <%= post.title %></h3>
+<p> Body: <%= post.body %></p>
+<% } else { %>
+<p>Post is not yet published</p>
+<%  } %>
 
-    <% if(post.published) { %>
-    <h3>Title: <%= post.title %></h3>
-    <p> Body: <%= post.body %></p>
-    <% } else { %>
-    <p>Post is not yet published</p>
-    <%  } %>
+<ul>
 
-    <ul>
+    <% for (let p of posts) { %>
+    <li>
+        <%= p.title %> By <%= p.author %>
+    </li>
+    <%  }%>
 
-        <% for (let p of posts) { %>
-        <li>
-            <%= p.title %> By <%= p.author %>
-        </li>
-        <%  }%>
+</ul>
 
-    </ul>
-</body>
-
-</html>
+<%- include('../Partials/footer.ejs') %>

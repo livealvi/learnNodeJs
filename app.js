@@ -10,11 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/about", (req, res) => {
-  res.render("pages/about");
+  res.render("pages/about", { title: "I am About Page" });
 });
 
 app.get("/help", (req, res) => {
-  res.render("pages/help");
+  res.render("pages/help", { title: "I am Help Page" });
 });
 
 app.get("/", (req, res) => {
