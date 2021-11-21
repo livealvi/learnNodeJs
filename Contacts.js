@@ -7,8 +7,8 @@ class Contacts {
     return this.contacts;
   }
 
-  getAllContactsBuId(id) {
-    return this.contacts.find((contacts) => contact.id == id);
+  getAllContactById(id) {
+    return this.contacts.find((contact) => contact.id == id);
   }
 
   createContact(contact) {
@@ -18,21 +18,21 @@ class Contacts {
   }
 
   updateContactById(id, updatedContact) {
-    let index = this.contact.findIndex((contact) => contact.id == id);
+    let index = this.contacts.findIndex((contact) => contact.id == id);
 
-    this.contacts[index.name] =
+    this.contacts[index].name =
       updatedContact.name || this.contacts[index].name;
-    this.contacts[index.phone] =
+    this.contacts[index].phone =
       updatedContact.phone || this.contacts[index].phone;
-    this.contacts[index.email] =
+    this.contacts[index].email =
       updatedContact.email || this.contacts[index].email;
     return this.contacts[index];
   }
 
   deleteContactById(id) {
-    let index = this.contact.findIndex((contact) => contact.id == id);
+    let index = this.contacts.findIndex((contacts) => contacts.id == id);
     let deletedObj = this.contacts[index];
-    this.contacts = this.contact.filter((contact) => contact.id !== id);
+    this.contacts = this.contacts.filter((contacts) => contacts.id !== id);
     return deletedObj;
   }
 }

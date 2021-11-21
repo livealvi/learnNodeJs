@@ -18,7 +18,7 @@ exports.getContactById = (req, res) => {
   let { id } = req.params;
   id = parseInt(id);
 
-  let contact = contacts.getAllContactsBuId(id);
+  let contact = contacts.getAllContactById(id);
   res.json(contact);
 };
 
@@ -26,10 +26,11 @@ exports.updateContact = (req, res) => {
   let { id } = req.params;
   id = parseInt(id);
 
-  let contact = contacts.updateContact(id, {
+  let { name, phone, email } = req.body;
+  let contact = contacts.updateContactById(id, {
     name,
-    email,
     phone,
+    email,
   });
   res.json(contact);
 };
