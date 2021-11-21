@@ -1,8 +1,8 @@
 {
-  "name": "learnnodejs",
+  "name": "contact",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "contact project: GET, POST, GET by ID, PUT by ID, Delete by ID.",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
@@ -11,16 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/livealvi/learnNodeJs.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Alvi Hasan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/livealvi/learnNodeJs/issues"
   },
   "homepage": "https://github.com/livealvi/learnNodeJs#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
