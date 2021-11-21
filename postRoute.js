@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
+  let { category, page, filters } = req.query;
   res.send("Render All Post");
 });
 
