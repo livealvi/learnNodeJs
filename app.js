@@ -10,7 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "EJs is Easy" });
+  let post = {
+    title: "Test Title",
+    body: "Test Body",
+    published: true,
+  };
+  res.render("index", { title: "EJs is Easy", post });
 });
 
 app.get("*", function (req, res) {

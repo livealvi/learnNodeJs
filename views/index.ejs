@@ -15,6 +15,14 @@
         This is a dummy text.This is a dummy text.This is a dummy text.
     </p>
     <%= new Date().toISOString() %>
+
+    <% if(post.published) { %>
+    <h3>Title: <%= post.title %></h3>
+    <p> Body: <%= post.body %></p>
+    <% } else { %>
+    <p>Post is not yet published</p>
+    <%  } %>
+
 </body>
 
 </html>
