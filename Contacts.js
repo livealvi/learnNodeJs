@@ -30,9 +30,9 @@ class Contacts {
   }
 
   deleteContactById(id) {
-    let index = this.contacts.findIndex((contacts) => contacts.id == id);
+    let index = this.contacts.findIndex((contact) => contact.id == id);
     let deletedObj = this.contacts[index];
-    this.contacts = this.contacts.filter((contacts) => contacts.id !== id);
+    this.contacts = this.contacts.filter((contact) => contact.id !== id);
     return deletedObj;
   }
 }
