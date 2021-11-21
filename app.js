@@ -15,7 +15,27 @@ app.get("/", (req, res) => {
     body: "Test Body",
     published: true,
   };
-  res.render("index", { title: "EJs is Easy", post });
+
+  let posts = [
+    {
+      title: "Test One",
+      author: "Alvi Hasan",
+    },
+    {
+      title: "Test Two",
+      author: "Alvi Hasan",
+    },
+    {
+      title: "Test Three",
+      author: "Alvi Hasan",
+    },
+    {
+      title: "Test Four",
+      author: "Alvi Hasan",
+    },
+  ];
+
+  res.render("index", { title: "EJs is Easy", post, posts });
 });
 
 app.get("*", function (req, res) {
