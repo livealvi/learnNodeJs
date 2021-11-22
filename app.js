@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const router = require("./router");
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 // });
 
 // let Test = mongoose.model("Test", testSchema);
+
+app.use("/contacts", router);
 
 app.get("/", (req, res) => {
   //   let test = new Test({
