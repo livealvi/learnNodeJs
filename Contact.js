@@ -21,3 +21,7 @@ const connectSchema = new Schema({
     maxlength: 15,
   },
 });
+
+const Contact = model("Contact", connectSchema);
+
+module.exports = Contact;
