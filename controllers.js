@@ -44,28 +44,27 @@ exports.createContact = (req, res) => {
   if (isError) {
     Contact.find()
       .then((contacts) => {
-        res.render("index", { contacts, error });
+        return res.render("index", { contacts, error });
       })
       .catch((err) => {
         console.log(err);
-        res.json({ message: "Error Occurred" });
+        return res.json({ message: "Error Occurred" });
       });
   }
 
-  console.log(error, isError);
-  return;
-
   let contact = new Contact({ name, phone, email });
 
-  // contact
-  //   .save()
-  //   .then((c) => {
-  //     res.json(c);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.json({ message: "Error Occurred" });
-  //   });
+  contact
+    .save()
+    .then((c) => {
+      Contact.find().then((contacts) => {
+        return res.render("index", { contacts, error: {} });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.json({ message: "Error Occurred" });
+    });
 };
 
 exports.updateContact = (req, res) => {
