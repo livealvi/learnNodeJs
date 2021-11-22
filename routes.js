@@ -10,8 +10,8 @@ const {
 
 router.get("/", getAllConnect);
 router.get("/:id", getSingleConnect);
+router.get("/delete/:id", deleteContact);
 router.post("/", createContact);
 router.put("/:id", updateContact);
-router.delete("/:id", deleteContact);
 
 module.exports = router;
