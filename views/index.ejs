@@ -17,7 +17,7 @@
     <div class="container">
         <div class="my-4">
             <h4>Create New Contact</h4>
-            <form action="/contacts" class=form-inline method="POST">
+            <form id="myForm" action="/contacts" class=form-inline method="POST">
                 <div class="form-group mr-3">
                     <input type="text" name="name" placeholder="Name"
                         class="form-control <%= error.name? 'is-invalid': '' %>">
@@ -63,7 +63,9 @@
                         <td><%= contact.phone %></td>
                         <td><%= contact.email %></td>
                         <td>
-                            <button class="btn btn-warning btn-sm">
+                            <button data-name=" <%= contact.name  %> " data-phone=" <%= contact.phone  %> "
+                                data-email=" <%= contact.email  %> " data-id=" <%= contact._id  %> "
+                                class="btn btn-warning btn-sm edit-btn">
                                 Edit
                             </button>
                             <a href="/contacts/delete/<%= contact._id %>" class=" btn btn-danger btn-sm">
@@ -88,6 +90,29 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script>
+        window.onload = function () {
+            let editBtns = document.getElementsByClassName('edit-btn');
+            let form = document.getElementById("myForm");
+
+            [...editBtns].forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    let {
+                        name,
+                        phone,
+                        email,
+                        id
+                    } = e.target.dataset;
+                    form[0].value = name;
+                    form[1].value = phone;
+                    form[2].value = email;
+                    form[3].value = id;
+                    form[4].value = 'Update';
+                });
+            });
+        }
     </script>
 </body>
 
