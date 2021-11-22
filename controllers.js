@@ -38,6 +38,32 @@ exports.createContact = (req, res) => {
     });
 };
 
-exports.updateContact = (req, res) => {};
+exports.updateContact = (req, res) => {
+  let { name, phone, email } = req.body;
+  let { id } = req.params;
 
-exports.deleteContact = (req, res) => {};
+  Contact.findOneAndUpdate(
+    { _id: id },
+    { $set: { name, email, phone } },
+    { new: true }
+  )
+    .then((contact) => {
+      res.json(contact);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ message: "Error Occurred" });
+    });
+};
+
+exports.deleteContact = (req, res) => {
+  let { id } = req.params;
+  Contact.findOneAndDelete({ _id: id })
+    .then((contact) => {
+      res.json(contact);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ message: "Error Occurred" });
+    });
+};
