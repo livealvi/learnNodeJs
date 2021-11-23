@@ -22,7 +22,9 @@ exports.signupPostController = async (req, res, next) => {
   }
 };
 
-exports.loginGetController = (req, res, next) => {};
+exports.loginGetController = (req, res, next) => {
+  res.render("pages/auth/login", { title: "Login in to your Account" });
+};
 
 exports.loginPostController = (req, res, next) => {};
 
