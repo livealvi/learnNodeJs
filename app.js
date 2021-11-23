@@ -1,5 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+// Import Route
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 
@@ -17,14 +21,24 @@ const middleware = [
 
 app.use(middleware);
 
+app.use("/auth", authRoute);
+
 // root-route
 app.get("/", (req, res) => {
-  res.render("pages/auth/singup", { title: "Create A New Account" });
   res.json("I am Running!");
 });
 
 const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {
-  console.log(`Server is Running on PORT ${PORT}`);
-});
+mongoose
+  .connect(
+    "mongodb+srv://livealvi:Highme1@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Database Connected");
+    app.listen(PORT, () => {
+      console.log(`Server is Running on PORT ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    return console.log(error);
+  });

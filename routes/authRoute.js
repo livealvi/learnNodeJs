@@ -1,15 +1,15 @@
 const router = require("express").Router();
 
 const {
-  singupGetController,
-  singupPostController,
+  signupGetController,
+  signupPostController,
   loginGetController,
   loginPostController,
   logoutController,
 } = require("../controllers/authController");
 
-router.get("/signup", singupGetController);
-router.post("/signup", singupPostController);
+router.get("/signup", signupGetController);
+router.post("/signup", signupPostController);
 
 router.get("/login", loginGetController);
 router.post("/login", loginPostController);
