@@ -1,7 +1,7 @@
 {
-  "name": "learnnodejs",
+  "name": "Blog Project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Building a Blog with Multiple Users Dashboard using ExpressJs, Mongoose, MongoDB",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/livealvi/learnNodeJs#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^6.0.13",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
