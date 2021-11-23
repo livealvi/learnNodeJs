@@ -1,6 +1,8 @@
 // title, body, author, tags, thumbnail, readTime, likes, dislikes, comments
 
 const { Schema, model } = require("mongoose");
+const User = require("./User");
+const Comment = require("./Comment");
 
 const postSchema = new Schema(
   {
@@ -16,7 +18,7 @@ const postSchema = new Schema(
     },
     author: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: User,
       require: true,
     },
     tags: {
@@ -25,12 +27,22 @@ const postSchema = new Schema(
     },
     thumbnail: String,
     readTime: String,
-    likes: [Schema.Types.ObjectId],
-    dislikes: [Schema.Types.ObjectId],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: User,
+      },
+    ],
+    dislikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: User,
+      },
+    ],
     comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Comments",
+        ref: Comment,
       },
     ],
   },

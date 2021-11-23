@@ -1,17 +1,19 @@
 // post, user, body, replies, error
 
 const { Schema, model } = require("mongoose");
+const User = require("./User");
+const Post = require("./Post");
 
 const commentSchema = new Schema(
   {
     post: {
       type: Schema.Types.ObjectId,
-      ref: "Post",
+      ref: Post,
       require: true,
     },
     user: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: User,
       require: true,
     },
     body: {
@@ -27,7 +29,7 @@ const commentSchema = new Schema(
         },
         user: {
           type: Schema.Types.ObjectId,
-          ref: "User",
+          ref: User,
           require: true,
         },
         createdAt: {
