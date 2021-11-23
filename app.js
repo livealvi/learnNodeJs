@@ -1,9 +1,21 @@
 const express = require("express");
 const morgan = require("morgan");
-const path = require("path");
 
 const app = express();
-app.use(morgan("dev"));
+
+//Setup View Engine
+app.setup("view engine", "ejs");
+app.set("views", "views");
+
+//Middleware array
+const middleware = [
+  morgan("dev"),
+  express.static("public"),
+  express.urlencoded({ extended: true }),
+  express.json(),
+];
+
+app.use(middleware);
 
 // root-route
 app.get("/", (req, res) => {
