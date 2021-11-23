@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const app = express();
 
 //Setup View Engine
-app.setup("view engine", "ejs");
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 //Middleware array
@@ -19,7 +19,8 @@ app.use(middleware);
 
 // root-route
 app.get("/", (req, res) => {
-  res.send("<h1>I am Running!</h1>");
+  res.render("pages/auth/singup", { title: "Create A New Account" });
+  res.json("I am Running!");
 });
 
 const PORT = process.env.PORT || 8080;
