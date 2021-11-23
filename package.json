@@ -1,7 +1,7 @@
 {
   "name": "Blog Project",
   "version": "1.0.0",
-  "description": "Building a Blog with Multiple Users Dashboard using ExpressJs, Mongoose, MongoDB",
+  "description": "Building a multi-author Blogging App following the MVC using ExpressJs, Mongoose, MongoDB",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
