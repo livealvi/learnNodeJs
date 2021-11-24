@@ -13,7 +13,8 @@
                                 Enter Username
                             </label>
                             <input type="text" name="username" id="username" placeholder="username"
-                                class="form-control <%= error.username ? 'is-invalid' : ''  %>  ">
+                                class="form-control <%= error.username ? 'is-invalid' : ''  %> "
+                                value="<%= value.username ? value.username : '' %>">
                             <div class="invalid-feedback">
                                 <%= error.username && error.username %>
                             </div>
@@ -24,7 +25,8 @@
                                 Enter Email
                             </label>
                             <input type="email" name="email" id="email" placeholder="email"
-                                class="form-control <%= error.email ? 'is-invalid' : ''  %>  ">
+                                class="form-control <%= error.email ? 'is-invalid' : ''  %> "
+                                value="<%= value.email ? value.email : '' %>">
                             <div class="invalid-feedback">
                                 <%= error.email && error.email %>
                             </div>
@@ -36,7 +38,8 @@
                                 Enter Password
                             </label>
                             <input type="password" name="password" id="password" placeholder="password"
-                                class="form-control <%= error.password ? 'is-invalid' : ''  %>  ">
+                                class="form-control <%= error.password ? 'is-invalid' : ''  %>  "
+                                value="<%= value.password ? value.password : '' %>">
                             <div class="invalid-feedback">
                                 <%= error.password && error.password %>
                             </div>
@@ -47,8 +50,9 @@
                                 Repeat Password
                             </label>
                             <input type="password" name="confirmPassword" id="confirmPassword"
-                                placeholder="confirm password"
-                                class="form-control <%= error.confirmPassword ? 'is-invalid' : ''  %>  ">
+                                placeholder="repeat password"
+                                class="form-control <%= error.confirmPassword ? 'is-invalid' : ''  %>  "
+                                value="<%= value.confirmPassword ? value.confirmPassword : '' %>">
                             <div class="invalid-feedback">
                                 <%= error.confirmPassword && error.confirmPassword %>
                             </div>
