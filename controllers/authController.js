@@ -47,6 +47,8 @@ exports.signupPostController = async (req, res, next) => {
 };
 
 exports.loginGetController = (req, res, next) => {
+  console.log(req.session.isLoggedIn, req.session.user);
+
   res.render("pages/auth/login", {
     title: "Login in to your Account",
     error: {},
@@ -77,7 +79,9 @@ exports.loginPostController = async (req, res, next) => {
       return res.json({ message: "Invalid Credential" });
     }
 
-    console.log(user);
+    req.session.isLoggedIn = true;
+    req.session.user = user;
+
     res.render("pages/auth/login", {
       title: "Login in to your Account",
       error: {},
