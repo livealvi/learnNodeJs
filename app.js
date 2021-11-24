@@ -2,9 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 // Import Route
 const authRoute = require("./routes/authRoute");
+
+const MONGODB_URI =
+  "mongodb+srv://livealvi:Highme1@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority";
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+  saveUninitialized: false,
+  expires: 1000 * 60 * 60 * 2,
+});
 
 const app = express();
 
@@ -22,6 +32,7 @@ const middleware = [
     secret: process.env.SECRET_KEY || "SECRET_KEY",
     resave: false,
     saveUninitialized: false,
+    store: store,
   }),
 ];
 
@@ -36,9 +47,7 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 8080;
 mongoose
-  .connect(
-    "mongodb+srv://livealvi:Highme1@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority"
-  )
+  .connect(MONGODB_URI)
   .then(() => {
     console.log("Database Connected");
     app.listen(PORT, () => {
