@@ -12,7 +12,11 @@
                             <label for="email">
                                 Email Address
                             </label>
-                            <input type="email" name="email" id="email" placeholder="email" class="form-control">
+                            <input type="email" name="email" id="email" placeholder="email"
+                                class="form-control <%= error.email ? 'is-invalid' : ''  %> ">
+                            <div class="invalid-feedback">
+                                <%= error.email && error.email %>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -20,7 +24,10 @@
                                 Password
                             </label>
                             <input type="password" name="password" id="password" placeholder="password"
-                                class="form-control">
+                                class="form-control <%= error.password ? 'is-invalid' : ''  %>  ">
+                            <div class="invalid-feedback">
+                                <%= error.password && error.password %>
+                            </div>
                         </div>
 
                         <input type="submit" class="btn btn-primary btn-block" value="Login">

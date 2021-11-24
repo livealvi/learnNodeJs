@@ -35,7 +35,11 @@ exports.signupPostController = async (req, res, next) => {
 
     let createdUser = await user.save();
     console.log("User Create Successfully", createdUser);
-    res.render("pages/auth/signup", { title: "Create A New Account" });
+    res.render("pages/auth/signup", {
+      title: "Create A New Account",
+      error: {},
+      value: {},
+    });
   } catch (error) {
     console.log(error);
     next(error);
@@ -43,11 +47,24 @@ exports.signupPostController = async (req, res, next) => {
 };
 
 exports.loginGetController = (req, res, next) => {
-  res.render("pages/auth/login", { title: "Login in to your Account" });
+  res.render("pages/auth/login", {
+    title: "Login in to your Account",
+    error: {},
+    value: {},
+  });
 };
 
 exports.loginPostController = async (req, res, next) => {
   let { email, password } = req.body;
+
+  let errors = validationResult(req).formatWith(errorFormatter);
+
+  if (!errors.isEmpty()) {
+    return res.render("pages/auth/login", {
+      title: "Login in to your Account",
+      error: errors.mapped(),
+    });
+  }
 
   try {
     let user = await User.findOne({ email: email });
@@ -61,7 +78,11 @@ exports.loginPostController = async (req, res, next) => {
     }
 
     console.log(user);
-    res.render("pages/auth/login", { title: "Login in to your Account" });
+    res.render("pages/auth/login", {
+      title: "Login in to your Account",
+      error: {},
+      value: {},
+    });
   } catch (error) {
     console.log(error);
     next(error);
