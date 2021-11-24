@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { body } = require("express-validator");
-const userModel = require("../models/User");
+const User = require("../models/User");
 
 const {
   signupGetController,
@@ -22,7 +22,7 @@ const signupValidator = [
     })
     .trim(),
 
-  body(email)
+  body("email")
     .isEmail()
     .withMessage("Please provide a valid email address")
     .custom(async (email) => {
@@ -33,15 +33,19 @@ const signupValidator = [
     })
     .normalizeEmail(),
 
-  body(password)
+  body("password")
     .isLength({ min: 5 })
     .withMessage("your password must be at least 5 characters"),
 
-  body(confirmPassword).custom((confirmPassword, { req }) => {
-    if (confirmPassword != req.body.password) {
-      throw new Error("password is not match");
-    }
-  }),
+  body("confirmPassword")
+    .isLength({ min: 5 })
+    .withMessage("your password must be at least 5 characters")
+    .custom((confirmPassword, { req }) => {
+      if (confirmPassword != req.body.password) {
+        throw new Error("password is not match");
+      }
+      return true;
+    }),
 ];
 
 router.get("/signup", signupGetController);
