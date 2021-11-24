@@ -10,7 +10,7 @@
 
                         <div class="form-group">
                             <label for="username">
-                                Enter Username (must ne unique)
+                                Enter Username
                             </label>
                             <input type="text" name="username" id="username" placeholder="username"
                                 class="form-control <%= error.username ? 'is-invalid' : ''  %>  ">
@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label for="email">
-                                Enter Valid Email
+                                Enter Email
                             </label>
                             <input type="email" name="email" id="email" placeholder="email"
                                 class="form-control <%= error.email ? 'is-invalid' : ''  %>  ">
@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             <label for="password">
-                                Enter Strong Password
+                                Enter Password
                             </label>
                             <input type="password" name="password" id="password" placeholder="password"
                                 class="form-control <%= error.password ? 'is-invalid' : ''  %>  ">
@@ -44,17 +44,17 @@
 
                         <div class="form-group">
                             <label for="confirmPassword">
-                                Enter Confirm Password
+                                Repeat Password
                             </label>
                             <input type="password" name="confirmPassword" id="confirmPassword"
-                                placeholder="Confirm Password"
+                                placeholder="confirm password"
                                 class="form-control <%= error.confirmPassword ? 'is-invalid' : ''  %>  ">
                             <div class="invalid-feedback">
                                 <%= error.confirmPassword && error.confirmPassword %>
                             </div>
                         </div>
 
-                        <input type="submit" class="btn btn-primary btn-block" value="Signup">
+                        <input type="submit" class="btn btn-success btn-block" value="Signup">
                     </form>
                     <a href="/auth/login" class="my-3 text-center">Already Have An Account? Login Here</a>
                 </div>
