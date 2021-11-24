@@ -9,6 +9,7 @@ const authRoute = require("./routes/authRoute");
 
 // Import Middleware
 const { bindUserWithRequest } = require("./middleware/authMiddleware");
+const setLocals = require("./middleware/setLocals");
 
 const MONGODB_URI =
   "mongodb+srv://livealvi:Highme1@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority";
@@ -38,6 +39,7 @@ const middleware = [
     store: store,
   }),
   bindUserWithRequest(),
+  setLocals(),
 ];
 
 app.use(middleware);
