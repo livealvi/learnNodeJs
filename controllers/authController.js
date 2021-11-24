@@ -4,14 +4,17 @@ const User = require("../models/User");
 const errorFormatter = require("../utils/validationErrorFormatter");
 
 exports.signupGetController = (req, res, next) => {
-  res.render("pages/auth/signup", { title: "Create A New Account" });
+  res.render("pages/auth/signup", { title: "Create A New Account", error: {} });
 };
 
 exports.signupPostController = async (req, res, next) => {
   let errors = validationResult(req).formatWith(errorFormatter);
 
   if (!errors.isEmpty()) {
-    return console.log(errors.mapped());
+    return res.render("pages/auth/signup", {
+      title: "Create A New Account",
+      error: errors.mapped(),
+    });
   }
 
   let { username, email, password } = req.body;

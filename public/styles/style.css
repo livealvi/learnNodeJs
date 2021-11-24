@@ -11,10 +11,10 @@ body {
     background-color: rgba(245, 245, 245);
 }
 
-
-.my-container {
-    min-height: 835px;
+.main-wrapper {
+    height: 87vh;
 }
+
 
 footer {
     padding: 20px 0;
