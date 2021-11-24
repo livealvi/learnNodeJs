@@ -7,7 +7,7 @@ exports.bindUserWithRequest = async () => {
     }
 
     try {
-      let user = await User.findById(req.session.user_id);
+      let user = User.findById(req.session.user._id);
       req.user = user;
       next();
     } catch (error) {

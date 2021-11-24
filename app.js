@@ -13,6 +13,7 @@ const setLocals = require("./middleware/setLocals");
 
 const MONGODB_URI =
   "mongodb+srv://livealvi:Highme1@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority";
+
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
