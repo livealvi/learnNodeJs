@@ -18,8 +18,8 @@ exports.signupPostController = async (req, res, next) => {
 
   let errors = validationResult(req).formatWith(errorFormatter);
 
-  req.flash("fail", "Please Check Your Form");
   if (!errors.isEmpty()) {
+    req.flash("fail", "Please Check Your Form");
     return res.render("pages/auth/login", {
       title: "Create A New Account",
       error: errors.mapped(),
@@ -59,8 +59,8 @@ exports.loginPostController = async (req, res, next) => {
 
   let errors = validationResult(req).formatWith(errorFormatter);
 
-  req.flash("fail", "Please Check Your Form");
   if (!errors.isEmpty()) {
+    req.flash("fail", "Please Check Your Form");
     return res.render("pages/auth/login", {
       title: "Login in to your Account",
       error: errors.mapped(),
