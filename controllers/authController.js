@@ -2,12 +2,14 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 const errorFormatter = require("../utils/validationErrorFormatter");
+const Flash = require("../utils/Flash");
 
 exports.signupGetController = (req, res, next) => {
   res.render("pages/auth/signup", {
     title: "Create A New Account",
     error: {},
     value: {},
+    flashMessage: Flash.getMessage(req),
   });
 };
 
@@ -16,14 +18,16 @@ exports.signupPostController = async (req, res, next) => {
 
   let errors = validationResult(req).formatWith(errorFormatter);
 
+  req.flash("fail", "Please Check Your Form");
   if (!errors.isEmpty()) {
-    return res.render("pages/auth/signup", {
+    return res.render("pages/auth/login", {
       title: "Create A New Account",
       error: errors.mapped(),
       value: {
         username,
         email,
         password,
+        flashMessage: Flash.getMessage(req),
       },
     });
   }
@@ -33,13 +37,9 @@ exports.signupPostController = async (req, res, next) => {
 
     let user = new User({ username, email, password: hashedPassword });
 
-    let createdUser = await user.save();
-    console.log("User Create Successfully", createdUser);
-    res.render("pages/auth/signup", {
-      title: "Create A New Account",
-      error: {},
-      value: {},
-    });
+    await user.save();
+    req.flash("success", "User Created successfully");
+    redirect("/auth/login");
   } catch (error) {
     console.log(error);
     next(error);
@@ -47,12 +47,10 @@ exports.signupPostController = async (req, res, next) => {
 };
 
 exports.loginGetController = (req, res, next) => {
-  console.log(req.session.isLoggedIn, req.session.user);
-
   res.render("pages/auth/login", {
     title: "Login in to your Account",
     error: {},
-    value: {},
+    flashMessage: Flash.getMessage(req),
   });
 };
 
@@ -61,22 +59,34 @@ exports.loginPostController = async (req, res, next) => {
 
   let errors = validationResult(req).formatWith(errorFormatter);
 
+  req.flash("fail", "Please Check Your Form");
   if (!errors.isEmpty()) {
     return res.render("pages/auth/login", {
       title: "Login in to your Account",
       error: errors.mapped(),
+      flashMessage: Flash.getMessage(req),
     });
   }
 
   try {
     let user = await User.findOne({ email: email });
     if (!user) {
-      return res.json({ message: "Invalid Credential" });
+      req.flash("fail", "Please Provide Valid Credentials");
+      return res.render("pages/auth/login", {
+        title: "Login in to your Account",
+        error: {},
+        flashMessage: Flash.getMessage(req),
+      });
     }
 
     let match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.json({ message: "Invalid Credential" });
+      req.flash("fail", "Please Provide Valid Credentials");
+      return res.render("pages/auth/login", {
+        title: "Login in to your Account",
+        error: {},
+        flashMessage: Flash.getMessage(req),
+      });
     }
 
     req.session.isLoggedIn = true;
@@ -86,6 +96,7 @@ exports.loginPostController = async (req, res, next) => {
         console.log(error);
         next(error);
       }
+      req.flash("success", "Successfully Logged In");
       res.redirect("/dashboard");
     });
   } catch (error) {
@@ -100,6 +111,7 @@ exports.logoutController = (req, res, next) => {
       console.log(error);
       return next(error);
     }
+    req.flash("success", "Successfully Logout");
     return res.redirect("/auth/login");
   });
 };
