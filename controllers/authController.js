@@ -81,11 +81,12 @@ exports.loginPostController = async (req, res, next) => {
 
     req.session.isLoggedIn = true;
     req.session.user = user;
-
-    res.render("pages/auth/login", {
-      title: "Login in to your Account",
-      error: {},
-      value: {},
+    req.session.save((error) => {
+      if (error) {
+        console.log(error);
+        next(error);
+      }
+      res.redirect("/dashboard");
     });
   } catch (error) {
     console.log(error);
@@ -93,4 +94,12 @@ exports.loginPostController = async (req, res, next) => {
   }
 };
 
-exports.logoutController = (req, res, next) => {};
+exports.logoutController = (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      console.log(error);
+      return next(error);
+    }
+    return res.redirect("/auth/login");
+  });
+};

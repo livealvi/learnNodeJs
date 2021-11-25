@@ -11,6 +11,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
+
+                <% if(isLoggedIn) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout">Logout</a>
+                </li>
+                <% } else { %>
                 <li class="nav-item">
                     <a class="nav-link" href="/auth/login">Login</a>
                 </li>
@@ -18,6 +24,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/auth/singup">Singup</a>
                 </li>
+                <% } %>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
