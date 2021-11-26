@@ -25,6 +25,13 @@ const store = new MongoDBStore({
 
 const app = express();
 
+const config = require("./config/config");
+if (app.get("env").toLowerCase() === "development") {
+  console.log(config.dev.name);
+} else {
+  console.log(config.prod.name);
+}
+
 if (app.get("env").toLowerCase() === "development") {
   app.use(morgan("dev"));
 }
