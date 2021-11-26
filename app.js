@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -13,10 +14,7 @@ const dashboardRoute = require("./routes/dashboardRoute");
 const { bindUserWithRequest } = require("./middleware/authMiddleware");
 const setLocals = require("./middleware/setLocals");
 
-let DB_ADMIN = process.env.DB_ADMIN;
-let DB_PASSWORD = process.env.DB_PASSWORD;
-
-const MONGODB_URI = `mongodb+srv://${DB_ADMIN}:${DB_PASSWORD}@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority`;
+const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.amhkf.mongodb.net/express-blog?retryWrites=true&w=majority`;
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
