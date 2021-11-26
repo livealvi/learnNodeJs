@@ -30,13 +30,6 @@ const app = express();
 
 console.log(config.get("name"));
 
-// const config = require("./config/config");
-// if (app.get("env").toLowerCase() === "development") {
-//   console.log(config.dev.name);
-// } else {
-//   console.log(config.prod.name);
-// }
-
 if (app.get("env").toLowerCase() === "development") {
   app.use(morgan("dev"));
 }
