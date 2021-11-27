@@ -1,15 +1,14 @@
 require("dotenv").config();
-const config = require("config");
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
+const config = require("config");
 
 // Import Route
-const authRoute = require("./routes/authRoute");
-const dashboardRoute = require("./routes/dashboardRoute");
+const setRoutes = require("./routes/routes");
 
 // Import Middleware
 const { bindUserWithRequest } = require("./middleware/authMiddleware");
@@ -27,14 +26,6 @@ const store = new MongoDBStore({
 });
 
 const app = express();
-
-console.log(config.get("name"));
-
-if (app.get("env").toLowerCase() === "development") {
-  app.use(morgan("dev"));
-}
-
-console.log(app.get("env"));
 
 //Setup View Engine
 app.set("view engine", "ejs");
@@ -58,13 +49,8 @@ const middleware = [
 
 app.use(middleware);
 
-app.use("/auth", authRoute);
-app.use("/dashboard", dashboardRoute);
-
-// root-route
-app.get("/", (req, res) => {
-  res.json("I am Running!");
-});
+// Using Routes from Route Dir
+setRoutes(app);
 
 const PORT = process.env.PORT || 8080;
 mongoose
