@@ -41,7 +41,6 @@ exports.signupPostController = async (req, res, next) => {
     req.flash("success", "User Created successfully");
     redirect("/auth/login");
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -100,7 +99,6 @@ exports.loginPostController = async (req, res, next) => {
       res.redirect("/dashboard");
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -108,7 +106,6 @@ exports.loginPostController = async (req, res, next) => {
 exports.logoutController = (req, res, next) => {
   req.session.destroy((error) => {
     if (error) {
-      console.log(error);
       return next(error);
     }
     req.flash("success", "Successfully Logout");
