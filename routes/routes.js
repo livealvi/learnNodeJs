@@ -20,6 +20,10 @@ const routes = [
 
 module.exports = (app) => {
   routes.forEach((r) => {
-    app.use(r.path, r.handler);
+    if (r.path === "/") {
+      app.get(r.path, r.handler);
+    } else {
+      app.use(r.path, r.handler);
+    }
   });
 };
